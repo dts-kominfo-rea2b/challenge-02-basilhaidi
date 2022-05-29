@@ -11,7 +11,7 @@
     ...
   ]
 */
-const arrayObjectPegawai = require("./data-customer.json");
+const arrayObjectPegawai = require('./data-customer.json');
 
 function lakukanLooping(arrPegawai) {
   // ! JANGAN DIMODIFIKASI
@@ -23,19 +23,31 @@ function lakukanLooping(arrPegawai) {
 
       Contoh: ["Aisyah Nirmala", "Mansur Faisal", ...]
   */
-  let hasilLooping = null;
+  let thisFullName = dataYangAkanDilooping.map(function (element) {
+    return `${element.namaDepan}` + ' ' + `${element.namaBelakang}`;
+  });
+
+  function getFullName(item) {
+    return [item.namaDepan, item.namaBelakang].join(' ');
+  }
+  let hasilLooping = dataYangAkanDilooping.map(getFullName);
 
   /*
     TODO 2: Buatlah sebuah variabel bernama "jumlahPria"
       yang berisi jumlah pria dari masing masing pegawai
   */
-  let jumlahPria = null;
+
+  let countMale = dataYangAkanDilooping.filter((t) => t.jenisKelamin === 'M').length;
+
+  let jumlahPria = countMale;
 
   /*
     TODO 3: Buatlah sebuah variabel bernama "jumlahWanita"
       yang berisi jumlah wanita dari masing masing pegawai
   */
-  let jumlahWanita = null;
+  let countFemale = dataYangAkanDilooping.filter((t) => t.jenisKelamin === 'F').length;
+
+  let jumlahWanita = countFemale;
 
   /*
     TODO 4: Buatlah sebuah variabel bernama "komentar"
@@ -47,8 +59,18 @@ function lakukanLooping(arrPegawai) {
         "Jumlah Wanita lebih banyak dari Pria"
       Apabila imbang, maka komentar akan berisi:
         "Jumlah Pria dan Wanita berimbang"
+
+      
   */
-  let komentar = null;
+  if (countMale > countFemale) {
+    thisComment = 'Jumlah Pria lebih banyak dari Wanita';
+  } else if (countFemale > countMale) {
+    thisComment = 'Jumlah Wanita lebih banyak dari Pria';
+  } else {
+    thisComment = 'Jumlah Pria dan Wanita berimbang';
+  }
+
+  let komentar = thisComment;
 
   // ! JANGAN DIMODIFIKASI
   return {
